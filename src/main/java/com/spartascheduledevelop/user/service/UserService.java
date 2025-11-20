@@ -16,7 +16,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    // 🔹 Create
+    // Create
     public UserResponse create(UserRequest request) {
 
         // 이메일 중복 체크
@@ -34,21 +34,21 @@ public class UserService {
         return new UserResponse(savedUser);
     }
 
-    // 🔹 Read All
+    // Read All
     public List<UserResponse> getAll() {
         return userRepository.findAll().stream()
                 .map(UserResponse::new)
                 .toList();
     }
 
-    // 🔹 Read One
+    // Read One
     public UserResponse getOne(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("유저가 존재하지 않습니다."));
         return new UserResponse(user);
     }
 
-    // 🔹 Update
+    // Update
     @Transactional
     public UserResponse update(Long userId, UserRequest request) {
         User user = userRepository.findById(userId)
@@ -64,7 +64,7 @@ public class UserService {
         return new UserResponse(user);
     }
 
-    // 🔹 Delete
+    // Delete
     public void delete(Long userId) {
         boolean exists = userRepository.existsById(userId);
 
